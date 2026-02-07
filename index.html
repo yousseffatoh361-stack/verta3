@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERTA BRAND</title>
@@ -148,6 +149,13 @@
   <p>Style & Distinction - الأناقة والتميز✨👌</p>
 </div>
     </header>
+
+<div class="thread-container">
+    <div class="spool">🧶</div> 
+    <div id="thread-line">
+        <div class="needle">🪡</div>
+    </div>
+</div>
 
     <div class="container">
         
@@ -547,5 +555,51 @@
         }
     }
 </script>
+
+<script>
+    window.addEventListener('scroll', function() {
+        let value = window.scrollY;
+
+        // الشكل الذهبي بينزل ببطء ويدور
+        document.querySelector('.shape-1').style.transform = 
+            `translateY(${value * 0.4}px) rotate(${value * 0.1}deg)`;
+            
+        // الشكل الكحلي بيتحرك للجنب كأنه بيتفرد
+        document.querySelector('.shape-2').style.transform = 
+            `translateX(${value * 0.2}px) translateY(-${value * 0.2}px)`;
+            
+        // الشكل الأحمر بيكبر ويصغر بسيط مع السكرول
+        document.querySelector('.shape-3').style.transform = 
+            `scale(${1 + value * 0.0005}) translateY(${value * 0.1}px)`;
+    });
+
+ 
+    let lastScrollTop = 0;
+    
+    window.onscroll = function() {
+        let scrollTop = window.scrollY;
+        let docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        let scrollPercent = (scrollTop / docHeight) * 100;
+        
+        let thread = document.getElementById('thread-line');
+        let spool = document.querySelector('.spool');
+
+        if(thread) {
+            thread.style.height = scrollPercent + "%";
+        }
+
+        // حركة دوران البكرة مع السكرول فقط
+        if (spool) {
+            spool.style.transform = `rotate(${scrollTop * 0.5}deg)`;
+        }
+    };
+
+
+</script>
+
+
+   
+
+
 </body>
 </html>
