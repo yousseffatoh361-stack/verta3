@@ -157,6 +157,32 @@
     </div>
 </div>
 
+<div class="background-threads">
+    <div class="v-thread t1"></div>
+    <div class="v-thread t2"></div>
+    <div class="v-thread t3"></div>
+    <div class="v-thread t4"></div>
+</div>
+
+<div class="factory-container">
+    <div class="background-threads">
+        <div class="v-thread t1"></div>
+        <div class="v-thread t2"></div>
+        <div class="v-thread t3"></div>
+        <div class="v-thread t4"></div>
+        <div class="v-thread t5"></div>
+    </div>
+</div>
+
+<div class="background-threads">
+    <div id="factory-wall"></div>
+    
+    <div class="v-thread t1"></div>
+    <div class="v-thread t2"></div>
+    <div class="v-thread t3"></div>
+    <div class="v-thread t4"></div>
+    <div class="v-thread t5"></div>
+</div>
     <div class="container">
         
         <div class="category-label boy-label">قسم الأولاد</div>
@@ -585,6 +611,48 @@
         if(thread) { thread.style.height = scrollPercent + "%"; }
         if(spool) { spool.style.transform = `rotate(${scrollTop * 0.5}deg)`; }
     };
+
+    window.onscroll = function() {
+    let scrollTop = window.scrollY;
+    let docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    let scrollPercent = (scrollTop / docHeight) * 100;
+    
+    // كود الخيط والأساسي اللي عملناه قبل كدة
+    let thread = document.getElementById('thread-line');
+    let spool = document.querySelector('.spool');
+    if(thread) { thread.style.height = scrollPercent + "%"; }
+    if(spool) { spool.style.transform = `rotate(${scrollTop * 0.5}deg)`; }
+
+    // --- الجديد: اهتزاز الخيوط الخلفية ---
+    let allThreads = document.querySelectorAll('.v-thread');
+    allThreads.forEach((t, index) => {
+        // كل خيط بيتهز بزاوية مختلفة (استخدام Sin عشان الحركة تكون ناعمة)
+        let shake = Math.sin(scrollTop * 0.005 + index) * 15; 
+        t.style.transform = `skewX(${shake}deg)`;
+    });
+};
+
+
+
+window.onscroll = function() {
+    let scrollTop = window.scrollY;
+    
+    // كود الخيط الأساسي والبكرة (لازم يفضل موجود)
+    let docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    let scrollPercent = (scrollTop / docHeight) * 100;
+    let thread = document.getElementById('thread-line');
+    let spool = document.querySelector('.spool');
+    if(thread) thread.style.height = scrollPercent + "%";
+    if(spool) spool.style.transform = `rotate(${scrollTop * 0.8}deg)`;
+
+    // اهتزاز الخيوط الملونة
+    let allThreads = document.querySelectorAll('.v-thread');
+    allThreads.forEach((t, index) => {
+        // حركة عشوائية شوية لكل خيط بناءً على السكرول
+        let shake = Math.sin(scrollTop * 0.004 + (index * 50)) * 25; 
+        t.style.transform = `translateX(${shake}px) skewX(${shake / 2}deg)`;
+    });
+};
 </script>
 
 
