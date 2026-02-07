@@ -1,0 +1,82 @@
+.thread-container {
+    position: fixed;
+    top: 0;
+    left: 20px;
+    width: 40px;
+    /* التعديل هنا: بنخلي الحاوية واخدة طول الشاشة */
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+#thread-line {
+    width: 2px;
+    background: #b22222;
+    /* بيبدأ من 0% وبيزيد لحد 100% من طول الشاشة */
+    height: 0%; 
+}
+.spool {
+    font-size: 60px; /* كبرنا الحجم من 35 لـ 60 (تقدر تزود لـ 80 لو عايزها ضخمة) */
+    z-index: 10;
+    margin-bottom: -10px; /* عدلنا دي عشان الخيط يفضل طالع من نص البكرة بالظبط */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); /* ضفنا ظل خفيف عشان تبان مجسمة وشيك */
+    
+    /* حركة الدوران اللي عملناها قبل كدة */
+    animation: rotateSpool 5s linear infinite;
+}
+#thread-line {
+    width: 4px;
+    background: #b22222;
+    height: 0%; 
+    position: relative; /* عشان الإبرة تتحرك بالنسبة للخيط */
+    transition: height 0.1s linear;
+}
+
+.needle {
+    position: absolute;
+    bottom: -15px; /* عشان تكون متعلقة في طرف الخيط من تحت */
+    left: 50%;
+    transform: translateX(-50%); /* سنتر الإبرة مع الخيط */
+    font-size: 25px;
+    z-index: 11;
+    /* ميل بسيط للإبرة عشان تبان واقعية */
+    transform: translateX(-50%) rotate(10deg); 
+}
+.thread-container {
+    position: fixed;
+    top: 0;
+    left: 10px; /* جرب 10 عشان تكون قريبة من الحافة */
+    width: 50px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.spool {
+    font-size: 50px;
+    z-index: 10;
+    background: white; /* عشان تظهر بوضوح فوق الخلفية */
+    border-radius: 50%;
+}
+
+#thread-line {
+    width: 3px;
+    background: #b22222;
+    height: 0%; 
+    position: relative;
+    transition: height 0.1s linear;
+}
+
+.needle {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(15deg);
+    font-size: 25px;
+}
