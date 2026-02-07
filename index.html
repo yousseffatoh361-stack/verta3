@@ -555,61 +555,7 @@
             modal.style.display = "none";
         }
     }
-</script>
-
-<script>
-    window.addEventListener('scroll', function() {
-        let value = window.scrollY;
-
-        // الشكل الذهبي بينزل ببطء ويدور
-        document.querySelector('.shape-1').style.transform = 
-            `translateY(${value * 0.4}px) rotate(${value * 0.1}deg)`;
-            
-        // الشكل الكحلي بيتحرك للجنب كأنه بيتفرد
-        document.querySelector('.shape-2').style.transform = 
-            `translateX(${value * 0.2}px) translateY(-${value * 0.2}px)`;
-            
-        // الشكل الأحمر بيكبر ويصغر بسيط مع السكرول
-        document.querySelector('.shape-3').style.transform = 
-            `scale(${1 + value * 0.0005}) translateY(${value * 0.1}px)`;
-    });
-
-
     window.onscroll = function() {
-        let scrollTop = window.scrollY;
-        let docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        let scrollPercent = (scrollTop / docHeight) * 100;
-        
-        let thread = document.getElementById('thread-line');
-        let spool = document.querySelector('.spool');
-
-        if(thread) { thread.style.height = scrollPercent + "%"; }
-        if(spool) { spool.style.transform = `rotate(${scrollTop * 0.5}deg)`; }
-    };
-
-    window.onscroll = function() {
-    let scrollTop = window.scrollY;
-    let docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    let scrollPercent = (scrollTop / docHeight) * 100;
-    
-    // كود الخيط والأساسي اللي عملناه قبل كدة
-    let thread = document.getElementById('thread-line');
-    let spool = document.querySelector('.spool');
-    if(thread) { thread.style.height = scrollPercent + "%"; }
-    if(spool) { spool.style.transform = `rotate(${scrollTop * 0.5}deg)`; }
-
-    // --- الجديد: اهتزاز الخيوط الخلفية ---
-    let allThreads = document.querySelectorAll('.v-thread');
-    allThreads.forEach((t, index) => {
-        // كل خيط بيتهز بزاوية مختلفة (استخدام Sin عشان الحركة تكون ناعمة)
-        let shake = Math.sin(scrollTop * 0.005 + index) * 15; 
-        t.style.transform = `skewX(${shake}deg)`;
-    });
-};
-
-
-
-window.onscroll = function() {
     let scrollTop = window.scrollY;
     
     // كود الخيط الأساسي والبكرة (لازم يفضل موجود)
@@ -619,20 +565,7 @@ window.onscroll = function() {
     let spool = document.querySelector('.spool');
     if(thread) thread.style.height = scrollPercent + "%";
     if(spool) spool.style.transform = `rotate(${scrollTop * 0.8}deg)`;
-
-    // اهتزاز الخيوط الملونة
-    let allThreads = document.querySelectorAll('.v-thread');
-    allThreads.forEach((t, index) => {
-        // حركة عشوائية شوية لكل خيط بناءً على السكرول
-        let shake = Math.sin(scrollTop * 0.004 + (index * 50)) * 25; 
-        t.style.transform = `translateX(${shake}px) skewX(${shake / 2}deg)`;
-    });
-};
+}
 </script>
-
-
-   
-
-
 </body>
 </html>
