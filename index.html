@@ -573,9 +573,7 @@
             `scale(${1 + value * 0.0005}) translateY(${value * 0.1}px)`;
     });
 
- 
-    let lastScrollTop = 0;
-    
+
     window.onscroll = function() {
         let scrollTop = window.scrollY;
         let docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -584,17 +582,9 @@
         let thread = document.getElementById('thread-line');
         let spool = document.querySelector('.spool');
 
-        if(thread) {
-            thread.style.height = scrollPercent + "%";
-        }
-
-        // حركة دوران البكرة مع السكرول فقط
-        if (spool) {
-            spool.style.transform = `rotate(${scrollTop * 0.5}deg)`;
-        }
+        if(thread) { thread.style.height = scrollPercent + "%"; }
+        if(spool) { spool.style.transform = `rotate(${scrollTop * 0.5}deg)`; }
     };
-
-
 </script>
 
 
