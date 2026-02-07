@@ -48,7 +48,7 @@
 .thread-container {
     position: fixed;
     top: 0;
-    left: 10px; /* جرب 10 عشان تكون قريبة من الحافة */
+    left: 5px; /* جرب 10 عشان تكون قريبة من الحافة */
     width: 50px;
     height: 100vh;
     display: flex;
@@ -59,7 +59,7 @@
 }
 
 .spool {
-    font-size: 50px;
+    font-size: 35px;
     z-index: 10;
     background: white; /* عشان تظهر بوضوح فوق الخلفية */
     border-radius: 50%;
@@ -80,8 +80,6 @@
     transform: translateX(-50%) rotate(15deg);
     font-size: 25px;
 }
-
-
 
 .v-thread {
     position: absolute;
